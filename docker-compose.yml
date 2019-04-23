@@ -9,6 +9,13 @@ services:
       - 8080:8080
     environment:
       VIRTUAL_HOST: soydos.test
+  pd_server:
+    build:
+      context: ../pd-server
+    ports:
+      - 8081:8080
+    environment:
+      VIRTUAL_HOST: api.soydos.test
 
   loadbalancer:
     ports:
