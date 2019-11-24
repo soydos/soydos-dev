@@ -12,11 +12,14 @@ services:
   pd_server:
     build:
       context: ../pd-server
+    volumes:
+      - ./target:/usr/src/pd-server/target
     ports:
       - 8081:8080
     environment:
       VIRTUAL_HOST: api.soydos.test
       UI_HOST: https://soydos.test
+      PG_HOST: postgres
   postgres:
     image: postgres
     restart: always
@@ -33,6 +36,7 @@ services:
     command: migrate
     volumes:
       - ../pd-db/sql:/flyway/sql
+      - ../pd-db/conf:/flyway/conf
     depends_on:
       - postgres
     environment:

@@ -21,3 +21,6 @@ update-server: server-down server-build server-up
 
 connect-db:
 	PGPASSWORD=pusoydos psql -U pd -h localhost -d pusoydos
+
+test-server:
+	cd ../pd-server && cargo test
